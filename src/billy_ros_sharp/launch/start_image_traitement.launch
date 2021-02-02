@@ -1,0 +1,7 @@
+﻿<launch>
+	
+	<node pkg="integrated_robotics_project" type="find_visual_distance.py" name="distance_estimation" output="screen"/>
+	<node pkg="integrated_robotics_project" type="generate_image_from_odom_occupancy.py" name="map_creator" output="screen"/>
+	<node pkg="billy_ros_sharp" type="resize_image_occupancy.py" name="visual_adaptation" output="screen"/>
+	
+</launch>

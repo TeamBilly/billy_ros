@@ -19,7 +19,7 @@ rosrun image_transport republish raw in:=/visual_augmented_image compressed out:
 """
 class GenerateVisualData():
 	def __init__(self):
-		rospy.init_node("map_creator", anonymous=True)
+		rospy.init_node("visual_adaptation", anonymous=True)
 		self.bridge = CvBridge()
 		#for turtlebot3 waffle
 		#image_topic = '/camera/rgb/image_raw/compressed'
@@ -32,7 +32,8 @@ class GenerateVisualData():
 		self.robot_odom_value = Odometry()
 		self.image_sub = rospy.Subscriber('/image_from_occupancy', Image, self.image_map_callback)
 		self.vive_left_button_sub = rospy.Subscriber('/left_vive_button', Vector3, self.vive_left_button_callback)
-		self.imge_robot_sub = rospy.Subscriber('/camera/rgb/image_raw/', Image, self.image_robot_callback)
+		#self.imge_robot_sub = rospy.Subscriber('/camera/rgb/image_raw/', Image, self.image_robot_callback)
+		self.imge_robot_sub = rospy.Subscriber('/image_rectangle/', Image, self.image_robot_callback)
 		self.visual_image_pub = rospy.Publisher('/visual_augmented_image', Image, queue_size=10)
 		self.image_message = Image()
 		self.image = np.zeros((384, 384, 1), np.uint8)
