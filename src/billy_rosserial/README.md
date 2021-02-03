@@ -1,8 +1,8 @@
-#README.md
+# README.md
 
 This file is about good practices and launching process
 
-##Raspberry pi:
+## Raspberry pi:
 
 Connect the raspberry to mouse, keyboard and screen
 
