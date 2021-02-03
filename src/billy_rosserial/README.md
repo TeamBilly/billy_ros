@@ -17,10 +17,10 @@ Clone billy_ros GitHub repository:
 	git clone https://github.com/TeamBilly/billy_ros.git
 
 Go to your RASP .bashrc and add following
-	'''bash
+	```bash
 	export ROS_IP=IP_OF_YOUR_RASP
 	export ROS_MASTER_URI=http://IP_OF_YOUR_PC:11311
-	'''
+	```
 	IP_OF_YOUR_RASP can be found by typing "ifconfig" into the RASP terminal and read the first IP from the last section
 	IP_OF_YOUR_PC can be found by typing "ifconfig" into the PC terminal and read the first IP from the last section
 
@@ -44,10 +44,10 @@ Place the RASP on robot:
 
 ## Computer
 Go to your PC .bashrc and add following
-	'''bash
+	```bash
 	export ROS_IP=IP_OF_YOUR_PC
 	export ROS_MASTER_URI=http://IP_OF_YOUR_PC:11311
-	'''
+	```
 
 Clone billy_ros GitHub repository:
 	git clone https://github.com/TeamBilly/billy_ros.git
@@ -55,30 +55,30 @@ Clone billy_ros GitHub repository:
 Turn master switch ON.
 
 Go to terminal:
-	'''bash
+	```bash
 	roscore
-	'''
+	```
 
 New terminal:
-	'''bash
+	```bash
 	ssh ubuntu@IP_OF_YOUR_RASP
 		enter your password (default is ubuntu)
 	killall -9 roscore
 	roscore
-	'''
+	```
 
 New terminal:
-	'''bash
+	```bash
 	ssh ubuntu@IP_OF_YOUR_RASP
 		Enter your password (default is ubuntu)
 	roslaunch billy_rosserial billy_rosserial_rasp.launch
-	'''
+	```
 	Several short sound from the motor should be heared when connection is made
 
 New terminal:
-	'''bash
+	```bash
 	roslaunch billy_rosserial billy_rosserial_pc.launch
-	'''
+	```
 	The robot should make a 180° no scope
 
 You can now send any message on cmd_vel topic, the robot should move accordingly
@@ -91,9 +91,9 @@ You can now send any message on cmd_vel topic, the robot should move accordingly
 Kill both process on the terminal controling the RASP (CTRL+C) and exit one using "exit"
 
 On the remaining on shut down the RASP:
-	'''bash
+	```bash
 	sudo shutdown -P now
-	'''
+	```
 	enter your password
 
 **WAIT FOR THE RASP RED LED TO BE CONTINUSLY ON BEFORE TURNING MASTER SWITCH OFF**
