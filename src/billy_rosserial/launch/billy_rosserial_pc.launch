@@ -1,0 +1,11 @@
+<launch>
+
+    <node pkg="billy_rosserial" type="billy_rosserial_pc.py" name="billy_rosserial_pc_node" output="screen">
+    </node>
+
+    <!-- node pkg="rosserial_python" type="serial_node.py" name="billy_v1_serial_node" output="screen">
+    <param name="port" value="/dev/ttyUSB0" />
+    <param name="baud" value="57600" />
+    </node -->
+
+</launch>
