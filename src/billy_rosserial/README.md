@@ -12,6 +12,7 @@ Follow this link: https://downloads.ubiquityrobotics.com/pi.html
 Default password is "ubuntu"
 
 Disable automatic wifi broadcast:
+
 Follow this link: https://forum.ubiquityrobotics.com/t/how-do-i-disable-wifi-access-point/33/2
 
 Clone billy_ros GitHub repository:
@@ -64,7 +65,6 @@ roscore
 New terminal:
 ```bash
 ssh ubuntu@IP_OF_YOUR_RASP
-	enter your password (default is ubuntu)
 killall -9 roscore
 roscore
 ```
@@ -72,7 +72,6 @@ roscore
 New terminal:
 ```bash
 ssh ubuntu@IP_OF_YOUR_RASP
-	//Enter your password (default is ubuntu)
 roslaunch billy_rosserial billy_rosserial_rasp.launch
 ```
 Several short sound from the motor should be heared when connection is made
@@ -96,7 +95,6 @@ On the remaining on shut down the RASP:
 ```bash
 sudo shutdown -P now
 ```
-enter your password
 
 **WAIT FOR THE RASP RED LED TO BE CONTINUSLY ON BEFORE TURNING MASTER SWITCH OFF**
 
