@@ -12,10 +12,7 @@ from cv_bridge import CvBridge, CvBridgeError
 import sys
 bridge = CvBridge()
 """
-roslaunch My_own_code turtlebot3_vr_control.launch
-roslaunch integrated_robotics_project start_navigation_turtlebot3_gmapping.launch
-rosrun integrated_robotics_project generate_image_from_odom_occupancy.py
-rosrun image_transport republish raw in:=/visual_augmented_image compressed out:=/visual_augmented_image
+roslaunch billy_ros_sharp billy_rossharp_vr_control.launch
 """
 class VrTeloperation():
 	def __init__(self):
@@ -33,8 +30,8 @@ class VrTeloperation():
 			print('RobotMove')
 		self.vive_left_dpad = ros_msg
 		command = Twist()
-		command.linear.x = ros_msg.x
-		command.angular.z = ros_msg.y
+		command.linear.x = ros_msg.x * 0.5
+		command.angular.z = - ros_msg.y * 2
 
 		self.cmd_vel.publish(command)
 
