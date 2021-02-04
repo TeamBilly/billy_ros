@@ -221,7 +221,7 @@
     </gazebo>
 
     <joint name="cam_joint" type="fixed">
-      <origin xyz="0.112 0 0.053" rpy="1.57 0 1.57" />
+      <origin xyz="0.112 0 0.053" rpy="0 0 0" />
       <parent link="base_link"/>
       <child link="cam_link" />
     </joint>
@@ -230,13 +230,13 @@
         <geometry>
          <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_SheldCam.stl"/>
         </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="1.57 0 1.57" />
       </visual>
       <collision>
         <geometry>
          <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_SheldCam.stl"/>
         </geometry>
-        <origin xyz="0 0 0.0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="1.57 0 1.57" />
       </collision>
     </link>
     <gazebo reference="cam_link">
@@ -508,7 +508,38 @@
         <distortionT1>0.0</distortionT1>
         <distortionT2>0.0</distortionT2>
       </plugin>
-    </sensor>
-  </gazebo>
+      </sensor>
+    </gazebo>
+
+    <gazebo reference="lidar_link"><sensor type="gpu_ray" name="head_rplidar_sensor">
+        <!--pose>0 0 0 0 0 0</pose -->
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>400</samples>
+              <resolution>1</resolution>
+              <min_angle>-3.14159</min_angle>
+              <max_angle>3.14159</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.15</min>
+            <max>6.0</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </ray>
+        <plugin name="gazebo_ros_head_rplidar_controller" filename="libgazebo_ros_gpu_laser.so">
+          <topicName>/scan</topicName>
+          <frameName>lidar_link</frameName>
+        </plugin>
+      </sensor>
+    </gazebo>
 
 </robot>
