@@ -350,7 +350,7 @@
       <material>Gazebo/Grey</material>
     </gazebo>
 
-    <joint name="wheel_left_joint" type="continuous">
+    <joint name="wheel_left_joint" type="fixed">
       <parent link="motor_left_link"/>
       <child link="wheel_left_link"/>
       <origin xyz="0 -0.022 0" rpy="-1.57 0 0"/>
@@ -430,7 +430,7 @@
       <material>Gazebo/Grey</material>
     </gazebo>
     
-    <joint name="wheel_right_joint" type="continuous">
+    <joint name="wheel_right_joint" type="fixed">
       <parent link="motor_right_link"/>
       <child link="wheel_right_link"/>
       <origin xyz="0 -0.023 0" rpy="-1.57 0 0"/>
