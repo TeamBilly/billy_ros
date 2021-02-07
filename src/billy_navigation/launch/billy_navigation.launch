@@ -6,10 +6,9 @@
   <arg name="configuration_basename" default="turtlebot3_lds_2d.lua"/>
   <arg name="open_rviz" default="true"/>
 
+  <include file="$(find billy_description)/launch/billy_rviz.launch"/>
 
   <include file="$(find billy_description)/launch/billy_spawn.launch"/>
-
-  <include file="$(find billy_description)/launch/billy_rviz.launch"/>
 
   <!-- Arguments slam method -->
   <arg name="sensor_range" default="1.0"/>

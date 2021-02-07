@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="billy_v2" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Joint, link and color of components -->
+
+    <link name="base_footprint"/>
+    <joint name="base_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="base_footprint"/>
+      <child link="base_link"/>
+    </joint>
+
+    <link name="odom"/>
+    <joint name="odom_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="odom"/>
+      <child link="base_footprint"/>
+    </joint>
+
+    <link name="base_link">
+      <visual>
+        <geometry>
+          <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_New_Stage.stl"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 1.57"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_New_Stage.stl"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 1.57"/>
+      </collision>
+      <inertial>
+        <origin xyz="0.0 0 0"/>
+        <mass value="0.5"/>
+        <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+                 iyy="0.01" iyz="0.0" 
+                 izz="0.03"/>
+      </inertial>
+    </link>
+    <gazebo reference="base_link">
+      <material>Gazebo/White</material>
+    </gazebo>
+
+    <joint name="stand_1_joint" type="fixed">
+      <origin xyz="0.108 0.108 -0.005" rpy="0 0 0" />
+      <parent link="base_link"/>
+      <child link="stand_1_link" />
+    </joint>
+    <link name="stand_1_link">
+      <visual>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/VisM6x40.stl"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+      </visual>
+      <collision>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/VisM6x40.stl"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+      </collision>
+      <!--inertial>
+        <origin xyz="0.0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.019995" ixy="0.0" ixz="0.0"
+                 iyy="0.019995" iyz="0.0" 
+                 izz="0.03675" />
+      </inertial-->
+    </link>
+    <gazebo reference="stand_1_link">
+      <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <joint name="stand_2_joint" type="fixed">
+      <origin xyz="-0.108 0.108 -0.005" rpy="0 0 0" />
+      <parent link="base_link"/>
+      <child link="stand_2_link" />
+    </joint>
+    <link name="stand_2_link">
+      <visual>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/VisM6x40.stl"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+      </visual>
+      <collision>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/VisM6x40.stl"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+      </collision>
+      <!--inertial>
+        <origin xyz="0.0 0 0"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.019995" ixy="0.0" ixz="0.0"
+                 iyy="0.019995" iyz="0.0" 
+                 izz="0.03675" />
+      </inertial-->
+    </link>
+    <gazebo reference="stand_2_link">
+      <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <joint name="stand_3_joint" type="fixed">
+      <origin xyz="-0.108 -0.108 -0.005" rpy="0 0 0" />
+      <parent link="base_link"/>
+      <child link="stand_3_link" />
+    </joint>
+    <link name="stand_3_link">
+      <visual>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/VisM6x40.stl"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0.0"/> 
+      </visual>
+      <collision>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/VisM6x40.stl"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0.0"/>
+      </collision>
+    </link>
+    <gazebo reference="stand_3_link">
+      <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <joint name="stand_4_joint" type="fixed">
+      <origin xyz="0.108 -0.108 -0.005" rpy="0 0 0" />
+      <parent link="base_link"/>
+      <child link="stand_4_link" />
+    </joint>
+    <link name="stand_4_link">
+      <visual>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/VisM6x40.stl"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0.0"/> 
+      </visual>
+      <collision>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/VisM6x40.stl"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0.0"/>
+      </collision>
+    </link>
+    <gazebo reference="stand_4_link">
+      <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <joint name="second_level_joint" type="fixed">
+      <origin xyz="-0.108 -0.108 0.035" rpy="0 0 0" />
+      <parent link="stand_1_link"/>
+      <child link="second_level_link"/>
+    </joint>
+    <link name="second_level_link">
+      <visual>
+        <geometry>
+          <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_New_Stage.stl"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 1.57"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_New_Stage.stl"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 1.57"/>
+      </collision>
+      <!--inertial>
+        <origin xyz="0.01 0 0.7"/>
+        <mass value="1.0"/>
+        <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+                 iyy="0.01" iyz="0.0" 
+                 izz="0.03" />
+      </inertial-->
+    </link>
+    <gazebo reference="base_second_link">
+      <material>Gazebo/White</material>
+    </gazebo>
+
+    <joint name="lidar_shield_joint" type="fixed">
+      <origin xyz="0 0 0.01" rpy="0 0 0" />
+      <parent link="second_level_link"/>
+      <child link="lidar_shield_link" />
+    </joint>
+    <link name="lidar_shield_link">
+      <visual>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_Shield_Lidar.stl"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_Shield_Lidar.stl"/>
+        </geometry>
+        <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      </collision>
+    </link>
+    <gazebo reference="lidar_shield_link">
+      <material>Gazebo/Orange</material>
+    </gazebo>
+
+    <joint name="lidar_joint" type="fixed">
+      <origin xyz="0 0 0.028" rpy="0 0 1.57" />
+      <parent link="lidar_shield_link"/>
+      <child link="lidar_link" />
+    </joint>
+    <link name="lidar_link">
+      <visual>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_Lidar.stl"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_Lidar.stl"/>
+        </geometry>
+        <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      </collision>
+    </link>
+    <gazebo reference="lidar_link">
+      <material>Gazebo/DarkGrey</material>
+    </gazebo>
+
+    <joint name="laser_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="lidar_link"/>
+      <child link="laser" />
+    </joint>
+    <link name="laser"></link>
+
+    <joint name="cam_joint" type="fixed">
+      <origin xyz="0.112 0 0.023" rpy="0 0 0" />
+      <parent link="second_level_link"/>
+      <child link="cam_link" />
+    </joint>
+    <link name="cam_link">
+      <visual>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_SheldCam.stl"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="1.57 0 1.57" />
+      </visual>
+      <collision>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_SheldCam.stl"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="1.57 0 1.57" />
+      </collision>
+    </link>
+    <gazebo reference="cam_link">
+      <material>Gazebo/DarkGrey</material>
+    </gazebo>
+
+    <joint name="front_wheel_holder_joint" type="fixed">
+      <origin xyz="0.073 0 -0.005" rpy="0 0 3.14" />
+      <parent link="base_link"/>
+      <child link="front_wheel_holder_link" />
+    </joint>
+    <link name="front_wheel_holder_link">
+      <visual>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_FrontWheel.stl"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0.0"/>
+      </visual>
+      <collision>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_FrontWheel.stl"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0.0"/>
+      </collision>
+    </link>
+    <gazebo reference="front_wheel_holder_link">
+      <material>Gazebo/Orange</material>
+    </gazebo>
+
+    <joint name="front_wheel_joint" type="fixed">
+      <parent link="front_wheel_holder_link"/>
+      <child link="front_wheel_link"/>
+      <origin xyz="0 0 -0.028" rpy="1.57 0 0"/>
+    </joint>
+    <link name="front_wheel_link">
+      <visual>
+        <geometry>
+          <cylinder length="0.01" radius="0.025"/>
+          <!--sphere radius="0.19"/-->
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </visual> 
+      <collision>
+        <geometry>
+          <cylinder length="0.01" radius="0.025"/>
+          <!--sphere radius="0.19"/-->
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+      </collision>
+      <inertial>
+        <mass value="0.4" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+                 iyy="0.001" iyz="0.0" 
+                 izz="0.001" />
+      </inertial>
+    </link>
+    <gazebo reference="front_wheel_link">
+      <material>Gazebo/Orange</material>
+    </gazebo>
+
+    <joint name="wheel_left_holder_joint" type="fixed">
+      <origin xyz="-0.118 -0.129 -0.023" rpy="0 0 0" />
+      <parent link="base_link"/>
+      <child link="wheel_left_holder_link" />
+    </joint>
+    <link name="wheel_left_holder_link">
+      <visual>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_Motor_ShieldL_v1.stl"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_Motor_ShieldL_v1.stl"/>
+        </geometry>
+        <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      </collision>
+    </link>
+    <gazebo reference="wheel_left_holder_link">
+      <material>Gazebo/Orange</material>
+    </gazebo>
+
+    <joint name="motor_left_joint" type="fixed">
+      <origin xyz="0.038 0.004 0" rpy="0 0 0" />
+      <parent link="wheel_left_holder_link"/>
+      <child link="motor_left_link" />
+    </joint>
+    <link name="motor_left_link">
+      <color name="yellow" />
+      <visual>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_Motor.stl"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_Motor.stl"/>
+        </geometry>
+        <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      </collision>
+    </link>
+    <gazebo reference="motor_left_link">
+      <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <joint name="wheel_left_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="wheel_left_link"/>
+      <origin xyz="-0.075 -0.150 -0.03" rpy="-1.57 0 0"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+    <link name="wheel_left_link">
+      <visual name="visual">
+        <geometry>
+          <!-- cylinder length="0.0206" radius="0.0550"/-->
+          <cylinder length="0.031" radius="0.031"/>
+        </geometry>
+        <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+         <cylinder length="0.031" radius="0.031"/>
+        </geometry>
+        <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      </collision>
+      <inertial>
+        <mass value="0.4" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+                 iyy="0.001" iyz="0.0" 
+                 izz="0.001" />
+      </inertial>
+    </link>
+    <gazebo reference="wheel_left_link">
+      <material>Gazebo/Black</material>
+    </gazebo>
+
+    <joint name="wheel_right_holder_joint" type="fixed">
+      <origin xyz="-0.080 0.129 -0.023" rpy="0 0 3.14" />
+      <parent link="base_link"/>
+      <child link="wheel_right_holder_link" />
+    </joint>
+    <link name="wheel_right_holder_link">
+      <color name="yellow" />
+      <visual>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_Motor_ShieldR_v1.stl"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_Motor_ShieldR_v1.stl"/>
+        </geometry>
+        <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      </collision>
+    </link>
+    <gazebo reference="wheel_right_holder_link">
+      <material>Gazebo/Orange</material>
+    </gazebo>
+
+    <joint name="motor_right_joint" type="fixed">
+      <origin xyz="0 0.004 0" rpy="0 3.14 0" />
+      <parent link="wheel_right_holder_link"/>
+      <child link="motor_right_link" />
+    </joint>
+    <link name="motor_right_link">
+      <color name="yellow" />
+      <visual>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_Motor.stl"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_Motor.stl"/>
+        </geometry>
+        <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      </collision>
+    </link>
+    <gazebo reference="motor_right_link">
+      <material>Gazebo/Grey</material>
+    </gazebo>
+    
+    <joint name="wheel_right_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="wheel_right_link"/>
+      <origin xyz="-0.075 0.150 -0.03" rpy="-1.57 0 0"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+    <link name="wheel_right_link">
+      <visual name="visual">
+        <geometry>
+          <cylinder length="0.031" radius="0.031"/>
+        </geometry>
+        <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      </visual>
+      <collision>
+        <geometry>
+         <cylinder length="0.031" radius="0.031"/>
+        </geometry>
+        <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      </collision>
+      <inertial>
+        <mass value="0.4" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+                 iyy="0.001" iyz="0.0" 
+                 izz="0.001" />
+      </inertial>
+    </link>
+    <gazebo reference="wheel_right_link">
+      <material>Gazebo/Black</material>
+    </gazebo>
+
+    <!-- Gazebo Pluggins -->
+
+    <gazebo><plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+        <legacyMode>false</legacyMode>
+        <alwaysOn>true</alwaysOn>
+        <publishWheelTF>true</publishWheelTF>
+        <publishTf>1</publishTf>
+        <publishWheelJointState>true</publishWheelJointState>
+        <updateRate>100.0</updateRate>
+        <leftJoint>wheel_left_joint</leftJoint>
+        <rightJoint>wheel_right_joint</rightJoint>
+        <wheelSeparation>.03</wheelSeparation>
+        <wheelDiameter>0.031</wheelDiameter>
+        <wheelAcceleration>1.0</wheelAcceleration>
+        <torque>20</torque>
+        <commandTopic>/cmd_vel</commandTopic>
+        <odometryTopic>odom</odometryTopic>
+        <odometryFrame>odom</odometryFrame>
+        <robotBaseFrame>base_link</robotBaseFrame>
+        <odometrySource>world</odometrySource> <!-- 'encoder' instead of 'world' is also possible -->
+        <publishTf>1</publishTf>
+      </plugin>
+    </gazebo>
+
+    <gazebo reference="cam_link"><sensor type="camera" name="myCam">
+      <update_rate>30.0</update_rate>
+      <camera name="head">
+        <horizontal_fov>1.04</horizontal_fov>
+        <image>
+          <width>720</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>50</far>
+        </clip>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0</updateRate>
+        <cameraName>camera1</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>camera</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+      </sensor>
+    </gazebo>
+
+    <gazebo reference="lidar_link"><sensor type="gpu_ray" name="head_rplidar_sensor">
+        <!--pose>0 0 0 0 0 0</pose -->
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>400</samples>
+              <resolution>1</resolution>
+              <min_angle>-3.14159</min_angle>
+              <max_angle>3.14159</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.15</min>
+            <max>6.0</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </ray>
+        <plugin name="gazebo_ros_head_rplidar_controller" filename="libgazebo_ros_gpu_laser.so">
+          <topicName>/scan</topicName>
+          <frameName>lidar_link</frameName>
+        </plugin>
+      </sensor>
+    </gazebo>
+
+</robot>
