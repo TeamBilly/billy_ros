@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+  <node pkg="move_base" type="move_base" name="move_base" respawn="false" output="screen">
+    <rosparam file="$(find billy_navigation)/yaml/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find billy_navigation)/yaml/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find billy_navigation)/yaml/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find billy_navigation)/yaml/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find billy_navigation)/yaml/base_local_planner_params.yaml" command="load" />
+
+    <param name="clearing_rotation_allowed" value="true" /> <!-- Billy is able to rotate in place -->
+    <param name ="/use_sim_time" value="true"/>
+  </node>
+
+</launch>

@@ -8,7 +8,7 @@
 
   <include file="$(find billy_description)/launch/billy_rviz.launch"/>
 
-  <include file="$(find billy_description)/launch/billy_spawn.launch"/>
+  <!-- include file="$(find billy_description)/launch/billy_spawn.launch"/-->
 
   <!-- Arguments slam method -->
   <arg name="sensor_range" default="1.0"/>

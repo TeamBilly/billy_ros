@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+  <include file="$(find billy_description)/launch/billy_rviz.launch"/>
+  
+  <node pkg="gmapping" type="slam_gmapping" name="slma_gmapping" output="screen">
+    <param name="scan" value="scan"/>
+    <param name="odom_frame" value="odom"/>
+    <param name="map_update_interval" value="0.1"/>
+    <param name="linearUpdate" value="0.0"/>
+    <param name="angularUpdate" value="0.0"/>
+  </node>
+
+</launch>
