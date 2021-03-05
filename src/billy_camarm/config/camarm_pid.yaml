@@ -1,0 +1,14 @@
+#Publish all joint states
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+
+#Position Controller
+camarm_ztox_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: camarm_ztox_joint
+  pid: {p: 20.0, i: 100, d: 5.0}
+camarm_connector_bot_controller:
+  type: effort_controllers/JointPositionController
+  joint: camarm_connector_bot_joint
+  pid: {p: 20.0, i: 100, d: 5.0}

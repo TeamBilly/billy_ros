@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+    <group ns="/billy_camarm">
+
+        <!-- Robot model -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find billy_description)/urdf/billy_camarm.xacro'"/>
+        
+        <!-- Gazebo Spawn -->
+        <arg name="x" default="0"/>
+        <arg name="y" default="0"/>
+        <arg name="z" default="0.2"/>
+     
+        <node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+              args="-urdf -param robot_description -model billy_camarm -x $(arg x) -y $(arg y) -z $(arg z)" />
+
+        <!-- Load Controller -->
+        <rosparam command="load" file="$(find billy_camarm)/config/billy_camarm_pid.yaml"/>
+
+        <!-- Controler -->
+        <node name="controller_spawner" pkg="controller_manager" type="spawner"
+            respawn="false" output="screen" ns="/billy_camarm"
+            args="--namespace=/billy_camarm
+            joint_state_controller
+            camarm_ztox_position_controller
+            camarm_connector_bot_controller
+            --timeout 60">
+        </node>
+
+    </group>
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find billy_description)/worlds/empty.world"/>
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="headless" value="false"/>
+        <arg name="debug" value="false"/>
+    </include>
+
+    <!--node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
+        <remap from="image" to="/rms/camera1/image_raw" />
+    </node-->
+ 
+</launch>
