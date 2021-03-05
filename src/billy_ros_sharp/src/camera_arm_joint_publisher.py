@@ -77,7 +77,8 @@ class JointPub(object):
 		#theta1 = - ros_rotation.x
 		#theta1 = ros_rotation.z
 		#theta2 = 3.14 - ros_rotation.y
-		theta1 = 1.5 - ros_rotation.y
+		print("rotation y" + str(- ros_rotation.y))
+		theta1 = -ros_rotation.y - 100
 		theta2 = ros_rotation.z
 		
 
