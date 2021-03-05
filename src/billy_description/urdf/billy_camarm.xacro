@@ -232,7 +232,7 @@
     <link name="laser"></link>
 
     <joint name="camarm_shield_joint" type="fixed">
-      <origin xyz="0.12 -0.005 0" rpy="0 0 0" />
+      <origin xyz="0.12 -0.005 -0.028" rpy="0 0 0" />
       <parent link="second_level_link"/>
       <child link="camarm_shield_link" />
     </joint>
