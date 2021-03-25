@@ -11,7 +11,7 @@
         <arg name="z" default="0.05" />
 
         <node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
-              args="-urdf -param robot_description -model robot_arm -x $(arg x) -y $(arg y) -z $(arg z)" />
+              args="-urdf -param robot_description -model billy_arm -x $(arg x) -y $(arg y) -z $(arg z)" />
 
         
 

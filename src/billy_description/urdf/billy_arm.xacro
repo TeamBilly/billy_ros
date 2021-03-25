@@ -350,7 +350,7 @@
             iyy="0.2679" iyz="0.0" 
             izz="0.0651"
             origin_rpy="0 0 0" origin_xyz="-0.0002 -0.02 -0.07"
-            scale_xyz="0.01 0.01 0.01"  pathfile="package://robot_arm/meshes/Link3_section_1.stl"/>
+            scale_xyz="0.01 0.01 0.01"  pathfile="package://billy_description/meshes/Link3_section_1.stl"/>
 
     <joint name="front_wheel_holder_joint" type="fixed">
       <origin xyz="0.073 0 -0.005" rpy="0 0 3.14" />
