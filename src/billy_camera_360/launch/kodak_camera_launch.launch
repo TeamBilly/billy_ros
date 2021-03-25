@@ -5,6 +5,8 @@
         <arg name="camera_name" value="kodak" />
         <!-- means video device 1, /dev/video1 -->
         <arg name="video_stream_provider" value="1" />
+        <!-- set buffer queue size of frame capturing to -->
+  		<arg name="buffer_queue_size" default="1" />
         <!-- throttling the querying of frames to -->
         <arg name="fps" value="15" />
         <!-- setting frame_id -->

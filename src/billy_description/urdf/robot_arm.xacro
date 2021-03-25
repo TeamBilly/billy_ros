@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="robot_arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- BGN - Include -->
+  <xacro:include filename="$(find robot_arm)/urdf/robot_param.xacro" />  
+  <xacro:include filename="$(find robot_arm)/urdf/links_joints.xacro" />
+  <!-- END - Include -->
+
+
+    <m_link name="${l00}"
+            mass="1024"
+            ixx="170.667" ixy="0.0" ixz="0.0"
+            iyy="170.6670" iyz="0.0" 
+            izz="170.6670"
+            origin_rpy="1.5708 0 0" origin_xyz="0 0 0"
+            scale_xyz="0.001 0.001 0.001"  pathfile="package://robot_arm/meshes/Base_new.stl"/>
+    
+
+
+    <m_joint name="${l00}__${l01}" type="revolute"
+           axis_xyz="0 0 1"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5"
+           origin_rpy="0 0 0" origin_xyz="0 -0.007 0.006"
+           parent="${l00}" child="${l01}"/>
+
+    <transmission name="trans_${l00}__${l01}">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${l00}__${l01}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_${l00}__${l01}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <m_link name="${l01}"
+            mass="15.7633"
+            ixx="1.3235" ixy="0.0" ixz="0.0"
+            iyy="1.235" iyz="0.0" 
+            izz="1.3235"
+            origin_rpy="1.5708 0 -1.5708" origin_xyz="0 0 0"
+            scale_xyz="0.001 0.001 0.001"  pathfile="package://robot_arm/meshes/Turning_mount.stl"/>
+
+    <m_joint name="${l01}__${l02}" type="revolute"
+           axis_xyz="0 0 1"
+           limit_e="1000" limit_l="-2.8" limit_u="2.8" limit_v="0.5"
+           origin_rpy="1.5708 1.5708 -1.5708" origin_xyz="-0.0005 0.001 0.0035"
+           parent="${l01}" child="${l02}"/>
+
+    <transmission name="trans_${l01}__${l02}">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${l01}__${l02}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_${l01}__${l02}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>*
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <m_link name="${l02}"
+            mass="5.7906"
+            ixx="1.2679" ixy="0.0" ixz="0.0"
+            iyy="1.2679" iyz="0.0" 
+            izz="0.0651"
+            origin_rpy="0 0 0 " origin_xyz="-0.0150 0 0"
+            scale_xyz="0.001 0.001 0.001"  pathfile="package://robot_arm/meshes/Link1.stl"/>
+
+    <m_joint name="${l02}__${l03}" type="revolute"
+           axis_xyz="1 0 0"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5"
+           origin_rpy="1.5708 -1.5708 1.5708" origin_xyz="-0.015 0 0.0002"
+           parent="${l02}" child="${l03}"/>
+
+    <transmission name="trans_${l02}__${l03}">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${l02}__${l03}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_${l02}__${l03}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>*
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <m_link name="${l03}"
+            mass="0.7906"
+            ixx="0.2679" ixy="0.0" ixz="0.0"
+            iyy="0.2679" iyz="0.0" 
+            izz="0.0651"
+            origin_rpy="0 0 0" origin_xyz="0.0015 0 -0.0038"
+            scale_xyz="0.001 0.001 0.001"  pathfile="package://robot_arm/meshes/Link2_Assembly.stl"/>
+
+    <m_joint name="${l03}__${l04}" type="revolute"
+           axis_xyz="1 0 0"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5"
+           origin_rpy="0 0 3.1416" origin_xyz="0 0 -0.012"
+           parent="${l03}" child="${l04}"/>
+
+    <transmission name="trans_${l03}__${l04}">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${l03}__${l04}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_${l03}__${l04}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>*
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <m_link name="${l04}"
+            mass="0.5906"
+            ixx="0.2679" ixy="0.0" ixz="0.0"
+            iyy="0.2679" iyz="0.0" 
+            izz="0.0651"
+            origin_rpy="0 0 0" origin_xyz="-0.0002 -0.002 -0.007"
+            scale_xyz="0.001 0.001 0.001"  pathfile="package://robot_arm/meshes/Link3_section_1.stl"/>
+
+    <!--<m_joint name="${l04}__${l05}" type="revolute"
+           axis_xyz="0 0 1"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5"
+           origin_rpy="0 0 0" origin_xyz="0 -0.0005 -0.0075"
+           parent="${l04}" child="${l05}"/>
+
+   <transmission name="trans_${l04}__${l05}">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${l04}__${l05}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_${l04}__${l05}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>*
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <m_link name="${l05}"
+            mass="0.7906"
+            ixx="0.2679" ixy="0.0" ixz="0.0"
+            iyy="0.2679" iyz="0.0" 
+            izz="0.0651"
+            origin_rpy="0 0 0" origin_xyz="0.0005 0 -0.0005"
+            scale_xyz="0.001 0.001 0.001"  pathfile="package://robot_arm/meshes/Link3_section_2.stl"/>
+
+
+    <m_joint name="${l05}__${l06}" type="revolute"
+           axis_xyz="0 0 1"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5"
+           origin_rpy="0 1.5708 0" origin_xyz="0 0 -0.004"
+           parent="${l05}" child="${l06}"/>
+
+   <transmission name="trans_${l05}__${l06}">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${l05}__${l06}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_${l05}__${l06}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>*
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+
+    <m_link name="${l06}"
+            mass="0.7906"
+            ixx="0.2679" ixy="0.0" ixz="0.0"
+            iyy="0.2679" iyz="0.0" 
+            izz="0.0651"
+            origin_rpy="0 0 0" origin_xyz="0 0 0.0005"
+            scale_xyz="0.001 0.001 0.001"  pathfile="package://robot_arm/meshes/Link3_section_3.stl"/>
+
+    <m_joint name="${l06}__${l07}" type="revolute"
+           axis_xyz="0 0 1"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5"
+           origin_rpy="3.1416 0 1.5708" origin_xyz="0.00275 0 0.0012"
+           parent="${l06}" child="${l07}"/>
+
+   <transmission name="trans_${l06}__${l07}">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${l06}__${l07}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_${l06}__${l07}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>*
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+
+    <m_link name="${l07}"
+            mass="0.7906"
+            ixx="0.2679" ixy="0.0" ixz="0.0"
+            iyy="0.2679" iyz="0.0" 
+            izz="0.0651"
+            origin_rpy="0 0 0" origin_xyz="0 0 0"
+            scale_xyz="0.001 0.001 0.001"  pathfile="package://robot_arm/meshes/End_Effector_Top_Jaw.stl"/>-->
+
+   
+
+ <!-- END - Robot description -->
+  
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/robot_arm</robotNamespace>
+      <robotParam>/robot_arm/robot_description</robotParam>
+    </plugin>
+  </gazebo>
+
+
+</robot>
+

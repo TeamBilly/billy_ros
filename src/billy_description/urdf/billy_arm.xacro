@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<robot name="billy_camarm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="billy_arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- BGN - Include -->
+  <xacro:include filename="$(find billy_arm)/config/robot_param.xacro" /> 
+  <xacro:include filename="$(find billy_arm)/config/billy_links_joints.xacro" /> 
+  <!-- END - Include -->
 
     <!-- Joint, link and color of components -->
 
@@ -178,7 +183,7 @@
       <material>Gazebo/White</material>
     </gazebo>
 
-    <joint name="lidar_shield_joint" type="fixed">
+    <!--<joint name="lidar_shield_joint" type="fixed">
       <origin xyz="0 0 0.01" rpy="0 0 0" />
       <parent link="second_level_link"/>
       <child link="lidar_shield_link" />
@@ -229,139 +234,123 @@
       <parent link="lidar_link"/>
       <child link="laser" />
     </joint>
-    <link name="laser"></link>
+    <link name="laser"></link> -->
 
-    <joint name="camarm_shield_joint" type="fixed">
-      <origin xyz="0.12 -0.005 -0.028" rpy="0 0 0" />
+
+    <m_link name="${l00}"
+            mass="1"
+            ixx="17.667" ixy="0.0" ixz="0.0"
+            iyy="17.6670" iyz="0.0" 
+            izz="17.6670"
+            origin_rpy="1.5708 0 0" origin_xyz="0 0 0"
+            scale_xyz="0.01 0.01 0.01"  pathfile="package://billy_description/meshes/Base_new.stl"/>
+
+    <joint name="second_level_link__${l00}" type="fixed">
+      <origin xyz="-0.05 0 0" rpy="0 0 1.57"/>
       <parent link="second_level_link"/>
-      <child link="camarm_shield_link" />
+      <child link="${l00}"/>
     </joint>
-    <link name="camarm_shield_link">
-      <visual>
-        <geometry>
-         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_CamArm_Shield.stl"/>
-        </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/> 
-      </visual>
-      <collision>
-        <geometry>
-         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_CamArm_Shield.stl"/>
-        </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-      </collision>
-      <inertial>
-        <origin xyz="0 0 0"/>
-        <mass value="0.5"/>
-        <inertia ixx="0.01" ixy="0.0" ixz="0.0"
-                 iyy="0.01" iyz="0.0" 
-                 izz="0.03"/>
-      </inertial>
-    </link>
 
-    <joint name="camarm_ztox_joint" type="revolute">
-      <origin xyz="0 0 0.01" rpy="0 0 0" />
-      <parent link="camarm_shield_link"/>
-      <child link="camarm_ztox_link" />
-      <axis xyz="0 0 1"/>
-      <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
-    </joint>
-    <link name="camarm_ztox_link">
-      <visual>
-        <geometry>
-         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_CamArm_ZtoX.stl"/>
-        </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/> 
-      </visual>
-      <collision>
-        <geometry>
-         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_CamArm_ZtoX.stl"/>
-        </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-      </collision>
-      <inertial>
-        <origin xyz="0 0 0"/>
-        <mass value="0.5"/>
-        <inertia ixx="0.01" ixy="0.0" ixz="0.0"
-                 iyy="0.01" iyz="0.0" 
-                 izz="0.03"/>
-      </inertial>
-    </link>
-    <transmission name="trans_camarm_ztox_link">
+
+    <m_joint name="${l00}__${l01}" type="revolute"
+           axis_xyz="0 0 1"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5"
+           origin_rpy="0 0 0" origin_xyz="0 -0.07 0.06"
+           parent="${l00}" child="${l01}"/>
+
+    <transmission name="trans_${l00}__${l01}">
       <type>transmission_interface/SimpleTransmission</type>
-      <joint name="camarm_ztox_joint">
+      <joint name="${l00}__${l01}">
         <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>
-      <actuator name="ac_camarm_ztox_link">
+      <actuator name="motor_${l00}__${l01}">
         <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
 
-    <joint name="camarm_connector_bot_joint" type="revolute">
-      <origin xyz="-0.005 0.01 0.04" rpy="0 0 0.785"/>
-      <parent link="camarm_ztox_link"/>
-      <child link="camarm_connector_bot_link" />
-      <axis xyz="1 0 0"/>
-      <limit effort="1000.0" lower="-2.2" upper="-0.8" velocity="0.5"/>
-    </joint>
-    <link name="camarm_connector_bot_link">
-      <visual>
-        <geometry>
-         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_CamArm_ConnectorBot.stl"/>
-        </geometry>
-        <origin xyz="0.005 0 -0.045" rpy="0 0 -0.785"/>
-      </visual>
-      <collision>
-        <geometry>
-         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_CamArm_ConnectorBot.stl"/>
-        </geometry>
-        <origin xyz="0.005 0 -0.045" rpy="0 0 -0.785"/>
-      </collision>
-      <inertial>
-        <origin xyz="0 0 0"/>
-        <mass value="0.5"/>
-        <inertia ixx="0.01" ixy="0.0" ixz="0.0"
-                 iyy="0.01" iyz="0.0" 
-                 izz="0.03"/>
-      </inertial>
-    </link>
-    <transmission name="trans_camarm_connector_bot_link">
+    <m_link name="${l01}"
+            mass="0.7633"
+            ixx="1.3235" ixy="0.0" ixz="0.0"
+            iyy="1.235" iyz="0.0" 
+            izz="1.3235"
+            origin_rpy="1.5708 0 -1.5708" origin_xyz="0 0 0"
+            scale_xyz="0.01 0.01 0.01"  pathfile="package://robot_arm/meshes/Turning_mount.stl"/>
+
+  <m_joint name="${l01}__${l02}" type="revolute"
+           axis_xyz="0 0 1"
+           limit_e="1000" limit_l="-2.8" limit_u="2.8" limit_v="0.5"
+           origin_rpy="1.5708 1.5708 -1.5708" origin_xyz="-0.005 0.01 0.035"
+           parent="${l01}" child="${l02}"/>
+
+    <transmission name="trans_${l01}__${l02}">
       <type>transmission_interface/SimpleTransmission</type>
-      <joint name="camarm_connector_bot_joint">
+      <joint name="${l01}__${l02}">
         <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       </joint>
-      <actuator name="ac_camarm_connector_bot_link">
-        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <actuator name="motor_${l01}__${l02}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>*
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
 
-    <joint name="camarm_connector_top_joint" type="fixed">
-      <origin xyz="0.005 0 -0.045" rpy="0 0 -0.785"/>
-      <parent link="camarm_connector_bot_link"/>
-      <child link="camarm_connector_top_link" />
-    </joint>
-    <link name="camarm_connector_top_link">
-      <visual>
-        <geometry>
-         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_CamArm_ConnectorTop.stl"/>
-        </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-      </visual>
-      <collision>
-        <geometry>
-         <mesh scale="0.001 0.001 0.001" filename="package://billy_description/meshes/TurtlebotBilly_CamArm_ConnectorTop.stl"/>
-        </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-      </collision>
-      <inertial>
-        <origin xyz="0 0 0"/>
-        <mass value="0.5"/>
-        <inertia ixx="0.01" ixy="0.0" ixz="0.0"
-                 iyy="0.01" iyz="0.0" 
-                 izz="0.03"/>
-      </inertial>
-    </link>
+    <m_link name="${l02}"
+            mass="0.7906"
+            ixx="1.2679" ixy="0.0" ixz="0.0"
+            iyy="1.2679" iyz="0.0" 
+            izz="0.0651"
+            origin_rpy="0 0 0 " origin_xyz="-0.150 0 0"
+            scale_xyz="0.01 0.01 0.01"  pathfile="package://robot_arm/meshes/Link1.stl"/>
+
+    <m_joint name="${l02}__${l03}" type="revolute"
+           axis_xyz="1 0 0"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5"
+           origin_rpy="1.5708 -1.5708 1.5708" origin_xyz="-0.15 0 0.002"
+           parent="${l02}" child="${l03}"/>
+
+    <transmission name="trans_${l02}__${l03}">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${l02}__${l03}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_${l02}__${l03}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>*
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <m_link name="${l03}"
+            mass="0.7906"
+            ixx="0.2679" ixy="0.0" ixz="0.0"
+            iyy="0.2679" iyz="0.0" 
+            izz="0.0651"
+            origin_rpy="0 0 0" origin_xyz="0.015 0 -0.038"
+            scale_xyz="0.01 0.01 0.01"  pathfile="package://robot_arm/meshes/Link2_Assembly.stl"/>
+
+    <m_joint name="${l03}__${l04}" type="revolute"
+           axis_xyz="1 0 0"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5"
+           origin_rpy="0 0 3.1416" origin_xyz="0 0 -0.12"
+           parent="${l03}" child="${l04}"/>
+
+    <transmission name="trans_${l03}__${l04}">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${l03}__${l04}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor_${l03}__${l04}">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>*
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <m_link name="${l04}"
+            mass="0.5906"
+            ixx="0.2679" ixy="0.0" ixz="0.0"
+            iyy="0.2679" iyz="0.0" 
+            izz="0.0651"
+            origin_rpy="0 0 0" origin_xyz="-0.0002 -0.02 -0.07"
+            scale_xyz="0.01 0.01 0.01"  pathfile="package://robot_arm/meshes/Link3_section_1.stl"/>
 
     <joint name="front_wheel_holder_joint" type="fixed">
       <origin xyz="0.073 0 -0.005" rpy="0 0 3.14" />
@@ -417,6 +406,7 @@
     <gazebo reference="front_wheel_link">
       <material>Gazebo/Orange</material>
     </gazebo>
+
 
     <joint name="wheel_left_holder_joint" type="fixed">
       <origin xyz="-0.118 -0.129 -0.023" rpy="0 0 0" />
@@ -637,8 +627,9 @@
       </sensor>
     </gazebo>
 
+    <!--    
     <gazebo reference="lidar_link"><sensor type="gpu_ray" name="head_rplidar_sensor">
-        <!--pose>0 0 0 0 0 0</pose -->
+        
         <visualize>true</visualize>
         <update_rate>10</update_rate>
         <ray>
@@ -666,13 +657,20 @@
           <frameName>lidar_link</frameName>
         </plugin>
       </sensor>
-    </gazebo>
+    </gazebo>-->
 
     <gazebo>
       <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       </plugin>
       <robotNamespace>/billy_camarm</robotNamespace>
       <robotParam>/billy_camarm/robot_description</robotParam>
+    </gazebo>
+
+    <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotNamespace>/billy_arm</robotNamespace>
+        <robotParam>/billy_arm/robot_description</robotParam>
+      </plugin>
     </gazebo>
 
 </robot>
