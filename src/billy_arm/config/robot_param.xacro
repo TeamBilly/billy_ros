@@ -8,7 +8,6 @@
   <xacro:property name="l04" value="robot_arm_link4" />
   <xacro:property name="l05" value="robot_arm_link5" />
   <xacro:property name="l06" value="robot_arm_link6" />
-  <xacro:property name="l07" value="robot_arm_link7" />
 
 
 </robot>

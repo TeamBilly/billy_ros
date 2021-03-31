@@ -16,7 +16,12 @@ joint2_position_controller:
 
 joint3_position_controller:
   type: effort_controllers/JointPositionController
-  joint: robot_arm_link2__robot_arm_link4
+  joint: robot_arm_link2__robot_arm_link3
+  pid: {p: 50, i: 50, d: 50}
+
+joint4_position_controller:
+  type: effort_controllers/JointPositionController
+  joint: robot_arm_link3__robot_arm_link4
   pid: {p: 50, i: 50, d: 50}
 
 joint5_position_controller:
@@ -24,13 +29,8 @@ joint5_position_controller:
   joint: robot_arm_link4__robot_arm_link5
   pid: {p: 50, i: 50, d: 50}
 
+
 joint6_position_controller:
   type: effort_controllers/JointPositionController
   joint: robot_arm_link5__robot_arm_link6
-  pid: {p: 50, i: 50, d: 50}
-
-
-joint7_position_controller:
-  type: effort_controllers/JointPositionController
-  joint: robot_arm_link6__robot_arm_link7
   pid: {p: 45, i: 45, d: 20 }
